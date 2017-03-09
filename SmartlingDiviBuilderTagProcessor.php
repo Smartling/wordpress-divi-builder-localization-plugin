@@ -123,6 +123,7 @@ class SmartlingDiviBuilderTagProcessor
     public static function getCopiedAttributesPatterns()
     {
         return [
+            "admin_label",
             "address_lat",
             "address_lng",
             "align",
