@@ -12,7 +12,8 @@
   * License:           GPL-3.0+
   * Network:           true
   * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
-  * Version: 1.0
+  * Version:           1.0.0
+  * Author:            Smartling
 */
 
 add_action('plugins_loaded', function () {
