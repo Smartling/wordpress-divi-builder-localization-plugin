@@ -6,7 +6,7 @@ use SmartlingDiviBuilder\Extension\ShortcodeInjector;
 
 /**
  * Class SmartlingDiviBuilderTagProcessor
- * @package SmartlingAdrotate
+ * @package SmartlingDiviBuilder
  */
 class SmartlingDiviBuilderTagProcessor
 {
