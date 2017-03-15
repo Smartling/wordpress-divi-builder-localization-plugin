@@ -99,14 +99,29 @@ class SmartlingDiviBuilderTagProcessor
         // Copied attributes.
         foreach (static::getCopiedAttributesPatterns() as $pattern) {
             $filters[] = [
-                'pattern' => '^'.$pattern.'$',
+                'pattern' => '\-' . $pattern . '$',
                 'action'  => 'copy',
             ];
         }
         
         // Localized.
         $filters = array_merge($filters, static::getLocalizedFilters());
-        
+
+        $filters = array_merge($filters, [
+            [
+                'pattern' => 'et_pb_old_content$',
+                'action'  => 'skip',
+            ],
+            [
+                'pattern' => 'et_pb_ab_stats',
+                'action'  => 'skip',
+            ],
+            [
+                'pattern' => 'et_pb_.*_color',
+                'action'  => 'skip',
+            ],
+        ]);
+
         add_filter(
             'smartling_register_field_filter',
             function (array $definitions) use ($filters) {
@@ -222,7 +237,6 @@ class SmartlingDiviBuilderTagProcessor
             "id",
             "image_placement",
             "in_same_term",
-            "include_categories",
             "inner_shadow",
             "input_border_radius",
             "link_shape",
@@ -342,14 +356,14 @@ class SmartlingDiviBuilderTagProcessor
     {
         return [
             [
-                'pattern'       => '^include_categories$',
+                'pattern'       => '^et_pb_blog-include_categories$',
                 'action'        => 'localize',
                 'serialization' => 'coma-separated',
                 'value'         => 'reference',
                 'type'          => 'category',
             ],
             [
-                'pattern'       => '^gallery_ids$',
+                'pattern'       => 'gallery_ids$',
                 'action'        => 'localize',
                 'serialization' => 'coma-separated',
                 'value'         => 'reference',
